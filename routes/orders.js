@@ -27,7 +27,7 @@ router.get(`/:id`, async (req, res) =>{
 })
 
 router.post('/', async (req,res)=>{
-    const orderItemsIds = Promise.all(req.body.orderItems.map(async (orderItem) =>{
+    const orderItemsIds = Promise.all(req.body.orderItems?.map(async (orderItem) =>{
         let newOrderItem = new OrderItem({
             quantity: orderItem.quantity,
             product: orderItem.product
@@ -39,7 +39,7 @@ router.post('/', async (req,res)=>{
     }))
     const orderItemsIdsResolved =  await orderItemsIds;
 
-    const totalPrices = await Promise.all(orderItemsIdsResolved.map(async (orderItemId)=>{
+    const totalPrices = await Promise.all(orderItemsIdsResolved?.map(async (orderItemId)=>{
         const orderItem = await OrderItem.findById(orderItemId).populate('product', 'price');
         const totalPrice = orderItem.product.price * orderItem.quantity;
         return totalPrice

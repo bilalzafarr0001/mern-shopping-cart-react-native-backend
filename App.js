@@ -33,7 +33,7 @@ app.use(`${api}/users`, usersRoutes);
 app.use(`${api}/orders`, ordersRoutes);
  
 //const uri="mongodb+srv://bilalzafarr11:bilalzafarr11@cluster0.0gysp.mongodb.net/shop?retryWrites=true&w=majority";
-const uri = "mongodb+srv://EduTech:saqi@1234@cluster0.1xhan.mongodb.net/shop?retryWrites=true&w=majority"
+const uri = 'mongodb://localhost:27017';
 mongoose.connect(uri, { useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true }
 );
 const connection = mongoose.connection;
@@ -42,5 +42,5 @@ connection.once('open', () => {
 })
 app.listen(3000, ()=>{
 
-    console.log('server is running http://localhost:3000');
+    console.log('server is running http://192.168.1.7:3000');
 })
